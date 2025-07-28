@@ -4,24 +4,37 @@ namespace CSharp_Code_Examples
 {
     class EvenOrOdd
     {
-        //Authors: Jake Harper
-        //Demonstrates basic if-else conditional logic in c#
+        // Authors: Jake Harper
+        // Checks if a number is even or odd with full input validation
 
         public static void run()
         {
-            Console.Write("Please enter a number");
-            int number = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Please enter an integer: ");
+            string? input = Console.ReadLine();  
 
-            if (number % 2 == 0)
+            if (string.IsNullOrWhiteSpace(input))
             {
-                Console.WriteLine($"{number} is an even number");
+                Console.WriteLine("Error: No input received");
+                return;
+            }
+
+            // Checks that the input is an integer
+            if (int.TryParse(input, out int number))
+            {
+                if (number % 2 == 0)
+                {
+                    Console.WriteLine($"{number} is an even number");
+                }
+                else
+                {
+                    Console.WriteLine($"{number} is an odd number");
+                }
             }
             else
             {
-                Console.WriteLine($"{number} is an odd number") ;
-
+                Console.WriteLine("Invalid input: Please enter an integer");
             }
-
         }
     }
 }
+
